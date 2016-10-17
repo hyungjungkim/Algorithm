@@ -1,0 +1,68 @@
+//
+//  main.cpp
+//  practice3
+//
+//  Created by 김형중 on 2016. 10. 17..
+//  Copyright © 2016년 김형중. All rights reserved.
+//
+
+#include <iostream>
+
+
+using namespace std;
+
+#define NMAX 1001
+
+int visitDfs[NMAX];
+bool chk[NMAX];
+int adjacent[NMAX][NMAX];
+
+int q[NMAX * 3];
+
+int N, M, V;
+
+void DFS(int v) {
+    int i;
+    visitDfs[v] = 1;
+    printf("%d ", v);
+    for (i = 1; i <= N; i++) {
+        if (adjacent[v][i] == 1 && visitDfs[i] == 0) {
+            DFS(i);
+        }
+    }
+}
+void BFS(int v) {
+    int head = 0 , tail = 0;
+    
+    q[tail++] = v;
+    chk[v] = true;
+    while (head < tail) {
+        int now = q[head++];
+        printf("%d ", now);
+        for (int i = 1; i <= N; i++) {
+            if (adjacent[now][i] == 1 && chk[i] == false) {
+                q[tail++] = i;
+                chk[i] = true;
+            }
+        }
+    }
+}
+int main(void) {
+    int v1, v2;
+
+    
+    scanf("%d %d %d", &N, &M, &V);
+    
+    for (int i = 1; i <= M; i++) {
+        scanf("%d %d", &v1, &v2);
+        adjacent[v1][v2] = adjacent[v2][v1] = 1;
+    }
+    
+    DFS(V);
+    printf("\n");
+    
+    BFS(V);
+    printf("\n");
+    
+    return 0;
+}
