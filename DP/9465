@@ -1,0 +1,43 @@
+//
+//  main.cpp
+//  practice3
+//  icpc.me/9465 BAEKJOON
+//
+//  Created by 김형중 on 2016. 10. 17..
+//  Copyright © 2016년 김형중. All rights reserved.
+//
+
+#include <iostream>
+
+using namespace std;
+
+int N , T;
+int input[3][100005];
+int DP[3][100005];
+
+int Max(int a, int b) { return a > b ? a : b; }
+
+int main(void) {
+    
+    int i, j;
+    
+    scanf("%d", &T);
+    while (T--) {
+        scanf("%d", &N);
+        for (i = 1; i <= 2; i++) {
+            for (j = 1; j <= N; j++) {
+                scanf("%d", &input[i][j]);
+            }
+        }
+        
+        for (i = 1; i <= N; i++) {
+            DP[1][i] = Max(Max(DP[1][i - 1], DP[2][i - 1] + input[1][i]),DP[2][i-2]+input[1][i]);
+            DP[2][i] = Max(Max(DP[2][i - 1], DP[1][i - 1] + input[2][i]), DP[1][i - 2] + input[2][i]);
+        }
+        if (DP[1][N] > DP[2][N])
+            printf("%d\n", DP[1][N]);
+        else
+            printf("%d\n", DP[2][N]);
+    }
+    return 0;
+}
