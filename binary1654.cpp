@@ -7,7 +7,6 @@
 //
 
 #include <stdio.h>
-#include <climits>
 
 #define KMAX 10001
 
