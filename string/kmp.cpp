@@ -1,9 +1,10 @@
 //
 //  main.cpp
-//  skct
+//  kmp
 //
 //  Created by 김형중 on 2016. 10. 21..
 //  Copyright © 2016년 김형중. All rights reserved.
+//  http://bowbowbow.tistory.com/6
 //
 
 #include <iostream>
